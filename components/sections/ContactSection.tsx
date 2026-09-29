@@ -1,6 +1,7 @@
 "use client";
 
 import { profileData } from "@/data/profile";
+import { trackEvent } from "@/lib/analytics";
 import { motion } from "framer-motion";
 import { Mail, MapPin, Send } from "lucide-react";
 import dynamic from "next/dynamic";
@@ -42,6 +43,7 @@ export default function ContactSection() {
   // Static export has no backend, so hand the message to the visitor's email client.
   const handleSubmit = (event: React.FormEvent<HTMLFormElement>) => {
     event.preventDefault();
+    trackEvent("generate_lead", { method: "contact_form" });
     const subject = encodeURIComponent(`Portfolio message from ${formData.name}`);
     const body = encodeURIComponent(`${formData.message}\n\n— ${formData.name} (${formData.email})`);
     window.location.href = `mailto:${profileData.email}?subject=${subject}&body=${body}`;
