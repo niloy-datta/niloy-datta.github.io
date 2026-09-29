@@ -1,3 +1,4 @@
+import GoogleAnalytics from "@/components/analytics/GoogleAnalytics";
 import CursorEffects from "@/components/effects/CursorEffects";
 import { profileData } from "@/data/profile";
 import { absoluteUrl, siteUrl } from "@/lib/site";
@@ -146,6 +147,7 @@ export default function RootLayout({ children }: { children: ReactNode }) {
         />
       </head>
       <body className={inter.className}>
+        <GoogleAnalytics />
         {/* Decorative cursor effects; accessibility-এর জন্য এগুলো content-এর বিকল্প নয়। */}
         <CursorEffects />
         {children}
